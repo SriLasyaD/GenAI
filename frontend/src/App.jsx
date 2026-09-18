@@ -31,11 +31,8 @@ export default function App() {
   ]);
   const [isLoading, setIsLoading] = useState(false);
   const [loadingStage, setLoadingStage] = useState('');
-  const [retrievalState, setRetrievalState] = useState({
-    activeQuery: null,
-    chunks: [],
-    provider: 'groq',
-  });
+  const [retrievalData, setRetrievalData] = useState(null);
+  const [highlightedChunkId, setHighlightedChunkId] = useState(null);
   const [isUploading, setIsUploading] = useState(false);
   const [uploadProgress, setUploadProgress] = useState('');
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
