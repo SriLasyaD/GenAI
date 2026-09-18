@@ -56,6 +56,11 @@ def on_startup():
         except Exception as e:
             print(f"Warning generating sample PDF: {e}")
 
+    # Asynchronously pre-warm embedding model in background thread so uploads are instant
+    import threading
+    from app.rag.embedder import Embedder
+    threading.Thread(target=Embedder.get_instance()._load_model, daemon=True).start()
+
 
 @app.get("/api/health")
 def health_check():
