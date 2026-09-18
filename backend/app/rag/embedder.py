@@ -1,6 +1,5 @@
-from typing import List
+from typing import List, Any
 import numpy as np
-from sentence_transformers import SentenceTransformer
 import threading
 
 
@@ -20,9 +19,10 @@ class Embedder:
             return cls._instance
 
     @property
-    def model(self) -> SentenceTransformer:
+    def model(self) -> Any:
         if self._model is None:
-            # Lazy load on first actual embedding call
+            # Lazy load on first actual embedding call to ensure instant server port binding
+            from sentence_transformers import SentenceTransformer
             self._model = SentenceTransformer(self.model_name)
         return self._model
 
